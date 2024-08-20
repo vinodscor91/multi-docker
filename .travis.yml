@@ -1,0 +1,15 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t vinod/docker-react -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run vinod/reac-test npm test -- --coverage
+
+after-success:
+  - docker build -t vinod/multi-client ./client
+  - docker build -t vinod/multi-nginx ./nginx
+  - docker build -t vinod/multi-server ./server
+  - docker build -t vinod/multi-worker ./worker
