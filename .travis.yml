@@ -14,7 +14,7 @@ after-success:
   - docker build -t vinodchndrskr/multi-server ./server
   - docker build -t vinodchndrskr/multi-worker ./worker
   # Log into Docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -d "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to Docker hub
   - docker push vinodchndrskr/multi-client
   - docker push vinodchndrskr/multi-nginx
