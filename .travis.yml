@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t vinod/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t vinodchndrskr/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true vinod/react-test npm run test
+  - docker run -e CI=true vinodchndrskr/react-test npm run test
 
 after-success:
-  - docker build -t vinod/multi-client ./client
-  - docker build -t vinod/multi-nginx ./nginx
-  - docker build -t vinod/multi-server ./server
-  - docker build -t vinod/multi-worker ./worker
+  - docker build -t vinodchndrskr/multi-client ./client
+  - docker build -t vinodchndrskr/multi-nginx ./nginx
+  - docker build -t vinodchndrskr/multi-server ./server
+  - docker build -t vinodchndrskr/multi-worker ./worker
   # Log into Docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -d "$DOCKER_ID" --password-stdin
   # Take those images and push them to Docker hub
-  - docker push vinod/multi-client
-  - docker push vinod/multi-nginx
-  - docker push vinod/multi-server
-  - docker push vinod/multi-worker
+  - docker push vinodchndrskr/multi-client
+  - docker push vinodchndrskr/multi-nginx
+  - docker push vinodchndrskr/multi-server
+  - docker push vinodchndrskr/multi-worker
